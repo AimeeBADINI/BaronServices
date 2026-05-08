@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexora Core — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Fond harmonisé (night / cyber soft) */
+  --bg: #0b1020;
+  --bg2: #2c3349;
+  --bg3: #10224d;
+
+  /* Surfaces */
+  --surface: #1a2027;
+  --surface2: #f2f4f7;
+
+  /* Couleurs principales (adaptées vibe anime / néon doux) */
+  --cyan: #4dd6ff;
+  --violet: #8b5cf6;
+  --pink: #ff5c8a;
+
+  /* Texte (meilleur contraste sur fond sombre) */
+  --text: #eaf2ff;
+  --text-muted: #9bb0d1;
+
+  /* Bordures */
+  --border: rgba(77, 214, 255, 0.12);
+  --border-bright: rgba(139, 92, 246, 0.35);
+
+  /* Fonts */
+  --mono: 'Space Mono', monospace;
+  --display: 'Syne', sans-serif;
+}
+  html { scroll-behavior: smooth; }
+
+#accueil {
+  min-height: 100vh;
+  background: url("/images/fond.jpg") no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+
+
+  /* GRID OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(124, 135, 231, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(25, 180, 197, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(5,5,8,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    color: var(--cyan);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--text-muted); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--cyan);
+    transition: width 0.3s;
+  }
+
+  nav a:hover { color: var(--cyan); }
+  nav a:hover::after { width: 100%; }
+
+  /* SECTIONS */
+  section { position: relative; z-index: 1; }
+
+  /* HERO */
+  #accueil {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 4rem;
+    overflow: hidden;
+  }
+
+  .hero-content { max-width: 800px; }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--cyan);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px; height: 1px;
+    background: var(--cyan);
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 800;
+    line-height: 1.0;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.02em;
+  }
+
+  .h1-accent {
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-family: var(--mono);
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin: 1.5rem 0 2.5rem;
+    line-height: 1.8;
+    max-width: 520px;
+  }
+
+  .hero-subtitle em {
+    color: var(--cyan);
+    font-style: normal;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2rem;
+    background: var(--cyan);
+    color: #000;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+
+  .btn-primary:hover {
+    background: #fff;
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2rem;
+    background: transparent;
+    color: var(--cyan);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--border-bright);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover {
+    background: rgba(0,229,255,0.1);
+    border-color: var(--cyan);
+  }
+
+  /* HERO DECORATION */
+  .hero-orb {
+    position: absolute;
+    right: -5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(155,93,229,0.2) 0%, rgba(0,229,255,0.08) 50%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-orb::after {
+    content: '';
+    position: absolute;
+    inset: 60px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,229,255,0.2);
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.5; }
+  }
+
+  .hero-code-block {
+    position: absolute;
+    right: 5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    line-height: 2;
+    color: var(--text-muted);
+    width: 340px;
+  }
+
+  .code-comment { color: #444466; }
+  .code-key { color: var(--violet); }
+  .code-val { color: var(--cyan); }
+  .code-str { color: #ffd700; }
+  .code-fn { color: var(--pink); }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--cyan);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: rgba(0,229,255,0.08);
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.8rem;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-bright), transparent);
+  }
+
+  /* À PROPOS */
+  #a-propos {
+    padding: 10rem 4rem 8rem; /* ↑ augmente l’espace en haut */
+
+    background: var(--bg2);
+    
+  }
+  .white-space {
+  height: 120px;
+  background: #ffffff;
+}
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text p strong {
+    color: var(--text);
+  }
+
+  .about-text p em {
+    color: var(--cyan);
+    font-style: normal;
+  }
+
+  .skills-title {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--cyan);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .skill-item {
+    margin-bottom: 1.2rem;
+  }
+
+  .skill-label {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-label span:last-child { color: var(--cyan); }
+
+  .skill-bar {
+    height: 2px;
+    background: var(--surface2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    transition: width 1s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 3rem;
+  }
+
+  .stat-box {
+    background: var(--bg2);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--cyan);
+    display: block;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  /* PROJETS */
+#projets {
+  width: 100%;
+  padding: 8rem 0; /* enlève les côtés */
+  margin: 0;
+}
+
+  .projects-grid {
+  width: 100%;
+  padding: 0 4rem; /* garde un peu d’air sur les côtés */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+   padding: 0;
+}
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 0;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .project-card:hover {
+    border-color: var(--border-bright);
+    transform: translateY(-4px);
+    background: var(--surface2);
+  }
+
+  .project-card:hover::before { transform: scaleX(1); }
+
+  .project-num {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-title {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: var(--text);
+  }
+
+  .project-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--cyan);
+    background: rgba(0,229,255,0.08);
+    border: 1px solid rgba(0,229,255,0.2);
+    padding: 0.25rem 0.6rem;
+    letter-spacing: 0.1em;
+  }
+
+  .project-link {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+
+  .project-link:hover { color: var(--cyan); }
+
+  .project-link span {
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+
+  .project-link:hover span { transform: translateX(4px); }
+
+  .project-card.featured {
+    
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .featured-badge {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--violet);
+    background: rgba(155,93,229,0.1);
+    border: 1px solid rgba(155,93,229,0.3);
+    padding: 0.25rem 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .featured-mockup {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  .mockup-bar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.2rem;
+  }
+
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+  .dot-red { background: var(--pink); }
+  .dot-yellow { background: #ffd700; }
+  .dot-green { background: #00e676; }
+
+  /* CONTACT */
+  #contact {
+    padding: 8rem 4rem;
+    background: var(--bg2);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-info h3 {
+    font-family: var(--display);
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .contact-info h3 span { color: var(--cyan); }
+
+  .contact-info p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .contact-link-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    padding: 0.8rem 1rem;
+    border: 1px solid transparent;
+  }
+
+  .contact-link-item:hover {
+    color: var(--cyan);
+    border-color: var(--border);
+    background: rgba(0,229,255,0.04);
+  }
+
+  .contact-link-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    border: 1px solid var(--border);
+    color: var(--cyan);
+  }
+
+  /* FORM */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .form-input, .form-textarea {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    padding: 0.9rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    resize: vertical;
+  }
+
+  .form-input:focus, .form-textarea:focus {
+    border-color: var(--cyan);
+  }
+
+  .form-input::placeholder, .form-textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.5;
+  }
+
+  .form-textarea { min-height: 120px; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .footer-copy span { color: var(--cyan); }
+
+  .footer-back {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-back:hover { color: var(--cyan); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    animation: fadeUp 0.8s cubic-bezier(0.4,0,0.2,1) both;
+  }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.55s; }
+
+  /* SCANLINE ANIMATION ON CODE BLOCK */
+  .hero-code-block::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 40px;
+    background: linear-gradient(180deg, transparent, rgba(0,229,255,0.05), transparent);
+    animation: scan 3s linear infinite;
+  }
+
+  @keyframes scan {
+    from { transform: translateY(-40px); }
+    to { transform: translateY(100%); }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    nav ul { gap: 1.5rem; }
+    #accueil, #a-propos, #projets, #contact { padding: 6rem 2rem; }
+    .hero-code-block { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .project-card.featured { grid-column: unset; grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(3, 1fr); }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+   
+<nav>
+  <a href="#accueil" class="nav-logo">Baron<span>_</span>Services</a>
+  <ul>
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#a-propos">À propos</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="accueil">
+  <div class="hero-content">
+    <div class="hero-tag">Echanteur &amp; Fondateur</div>
+    <h1>Construire<br>la <span class="h1-accent">maison</span><br>de demain.</h1>
+    <p class="hero-subtitle">
+      Bienvenue chez <em>BaronServices</em> — où chaque service est fait avec attention.
+      Je transforme vos maisons en lieux  surs <em>précis, performants</em> et mémorables.
+    </p>
+    <div class="hero-cta">
+      <a href="#projets" class="btn-primary">Voir mes projets →</a>
+      <a href="#contact" class="btn-outline">Me contacter</a>
+    </div>
+  </div>
+
+  
+
+</section>
+<div class="white-space"></div>
+<!-- À PROPOS -->
+<section id="a-propos">
+  <div class="section-header">
+    <div class="section-tag">01</div>
+    <h2 class="section-title">À propos</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-text">
+     <p>
+  Je suis <strong>étancheur</strong> et fondateur de <em>BaronServices</em>,
+  un espace où je mets en valeur la précision, la rigueur et le travail bien fait.
+</p>
+
+<p>
+  Mon métier consiste à assurer l’étanchéité des toitures et des structures,
+  afin de protéger les bâtiments contre l’eau et les intempéries, avec des solutions durables et efficaces.
+</p>
+
+<p>
+  À BaronServices, j’apporte la même exigence : construire des projets solides, fiables et pensés pour durer,
+  que ce soit dans le bâtiment ou dans le digital.
+</p>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <span class="stat-num">10+</span>
+          <span class="stat-label">Projets</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Passion</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">Créativité</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="skills-title"> technique</div>
+
+      <div class="skill-item">
+        <div class="skill-label"><span>Accessibilite</span><span>95%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width: 95%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span>Efficacite</span><span>92%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width: 92%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span>Creativite</span><span>88%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width: 88%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span>Responsabilite</span><span>96%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width: 96%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span>Performance </span><span>85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span> Design</span><span>80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- PROJETS -->
+<section id="projets">
+  <div class="section-header">
+    <div class="section-tag">02</div>
+    <h2 class="section-title">Projets</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- 1 -->
+    <div class="project-card featured">
+      <div>
+        <div class="featured-badge">★ Chantier phare</div>
+        <div class="project-num">001</div>
+        <h3 class="project-title">Étanchéité toiture complète</h3>
+        
+        <img src="/images/img1.jpg" alt="Toiture étanchéité 1"
+        style="width:100%; margin:1rem 0; border:1px solid var(--border);">
+
+        <p class="project-desc">
+          Réalisation complète d’une étanchéité bitumineuse sur toiture terrasse.
+        </p>
+
+        <div class="project-tags">
+          <span class="tag">Bitume</span>
+          <span class="tag">Toiture</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="project-card">
+      <div class="project-num">002</div>
+      <h3 class="project-title">Réparation fuite toiture</h3>
+
+      <img src="/images/img2.jpg" alt="Fuite toiture"
+      style="width:100%; margin:1rem 0; border:1px solid var(--border);">
+
+      <p class="project-desc">
+        Réparation rapide d’infiltration d’eau sur toiture ancienne.
+      </p>
+
+      <div class="project-tags">
+        <span class="tag">Urgence</span>
+        <span class="tag">Réparation</span>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="project-card">
+      <div class="project-num">003</div>
+      <h3 class="project-title">Étanchéité terrasse maison</h3>
+
+      <img src="/images/img3.jpg" alt="Terrasse"
+      style="width:100%; margin:1rem 0; border:1px solid var(--border);">
+
+      <p class="project-desc">
+        Protection complète d’une terrasse contre l’eau et les fissures.
+      </p>
+
+      <div class="project-tags">
+        <span class="tag">Terrasse</span>
+        <span class="tag">Protection</span>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="project-card">
+      <div class="project-num">004</div>
+      <h3 class="project-title">Toiture bâtiment industriel</h3>
+
+      <img src="/images/img4.jpg" alt="Bâtiment industriel"
+      style="width:100%; margin:1rem 0; border:1px solid var(--border);">
+
+      <p class="project-desc">
+        Étanchéité renforcée pour grand bâtiment industriel.
+      </p>
+
+      <div class="project-tags">
+        <span class="tag">Industriel</span>
+        <span class="tag">Grande surface</span>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="project-card">
+      <div class="project-num">005</div>
+      <h3 class="project-title">Traitement humidité mur</h3>
+
+      <img src="/images/img5.jpg" alt="Mur humidité"
+      style="width:100%; margin:1rem 0; border:1px solid var(--border);">
+
+      <p class="project-desc">
+        Traitement contre l’humidité et protection des murs extérieurs.
+      </p>
+
+      <div class="project-tags">
+        <span class="tag">Humidité</span>
+        <span class="tag">Protection mur</span>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <div class="section-tag">03</div>
+    <h2 class="section-title">Contact</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Travaillons<br>ensemble <span>_</span></h3>
+      <p>
+        
+        Je serais ravie d'en discuter et de voir comment BaronServices  peut vous accompagner.
+      </p>
+
+      <a href="mailto:honore@gmail.com" class="contact-link-item">
+    <div class="contact-link-icon">@</div>
+    honore@gmail.com
+  </a>
+
+  <a class="contact-link-item whatsapp"
+     href="https://wa.me/22605338841?text=Bonjour%20je%20viens%20de%20votre%20portfolio%20et%20je%20souhaite%20vous%20contacter"
+     target="_blank">
+    <div class="contact-link-icon">💬</div>
+    WhatsApp
+  </a>
+
+  <div class="contact-link-item">
+    <div class="contact-link-icon">📍</div>
+    Kongoussi, Burkina Faso
+  </div>
+    </div>
+    <div class="footer-copy">
+    © 2025 <span>Nexora Core</span> — Tous droits réservés
+  </div>
+  <a href="#accueil" class="footer-back">↑ Haut de page</a>
+
+ 
+
+    
+
+
+
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.reset();
+    setTimeout(() => {
+      document.getElementById('form-success').style.display = 'none';
+    }, 4000);
+  }
+
+  // Animate skill bars on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fills = entry.target.querySelectorAll('.skill-fill');
+        fills.forEach(fill => {
+          const w = fill.style.width;
+          fill.style.width = '0%';
+          setTimeout(() => fill.style.width = w, 100);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const aboutSection = document.querySelector('#a-propos');
+  if (aboutSection) observer.observe(aboutSection);
+
+  // Active nav link
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--cyan)' : '';
+    });
+  });
+</script>
+</body>
+</html>
