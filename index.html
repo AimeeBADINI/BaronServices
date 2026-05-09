@@ -272,6 +272,7 @@ nav a:hover { color: var(--or); background: var(--or3); }
   background: var(--noir2);
 }
 
+
 .about-wrap { max-width: 1140px; margin: 0 auto; }
 
 .about-grid {
@@ -563,6 +564,46 @@ footer {
   footer { flex-direction: column; gap: .75rem; text-align: center; }
   .fg-row { grid-template-columns: 1fr; }
 }
+
+
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: var(--or);
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 960px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--noir2);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    display: none;
+    border-bottom: 1px solid var(--bord);
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+}
+
+select.fi {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
 </style>
 </head>
 <body>
@@ -580,7 +621,8 @@ footer {
     <li><a href="#projets">Projets</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Demander un devis</a>
+ 
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 </nav>
 
 <!-- ══ HERO ══ -->
@@ -994,6 +1036,20 @@ function handleSubmit(e) {
   e.target.reset();
   setTimeout(() => { ok.style.display = 'none'; }, 5000);
 }
+
+
+function toggleMenu() {
+  document.querySelector('nav ul').classList.toggle('active');
+}
+
+// fermer le menu quand on clique sur un lien
+document.querySelectorAll('nav ul a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('nav ul').classList.remove('active');
+  });
+});
+
+
 
 /* ── Skill bars animées au scroll ── */
 new IntersectionObserver(entries => {
