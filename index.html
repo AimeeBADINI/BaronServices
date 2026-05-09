@@ -3,1050 +3,1037 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nexora Core — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>Baron Services — Étanchéité & Protection</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Fond harmonisé (night / cyber soft) */
-  --bg: #0b1020;
-  --bg2: #2c3349;
-  --bg3: #10224d;
-
-  /* Surfaces */
-  --surface: #1a2027;
-  --surface2: #f2f4f7;
-
-  /* Couleurs principales (adaptées vibe anime / néon doux) */
-  --cyan: #4dd6ff;
-  --violet: #8b5cf6;
-  --pink: #ff5c8a;
-
-  /* Texte (meilleur contraste sur fond sombre) */
-  --text: #eaf2ff;
-  --text-muted: #9bb0d1;
-
-  /* Bordures */
-  --border: rgba(77, 214, 255, 0.12);
-  --border-bright: rgba(139, 92, 246, 0.35);
-
-  /* Fonts */
-  --mono: 'Space Mono', monospace;
-  --display: 'Syne', sans-serif;
+  --noir:    #0a0c0e;
+  --noir2:   #111418;
+  --noir3:   #1a1f26;
+  --acier:   #242b35;
+  --acier2:  #2f3847;
+  --or:      #c8922a;
+  --or2:     #e8b04a;
+  --or3:     rgba(200,146,42,0.12);
+  --blanc:   #f0ede8;
+  --gris:    #8a8f99;
+  --gris2:   #5a6070;
+  --bord:    rgba(200,146,42,0.18);
+  --bord2:   rgba(200,146,42,0.45);
+  --display: 'Bebas Neue', sans-serif;
+  --body:    'DM Sans', sans-serif;
+  --mono:    'DM Mono', monospace;
 }
-  html { scroll-behavior: smooth; }
 
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  background: var(--noir);
+  color: var(--blanc);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── GRAIN OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: .5;
+}
+
+section { position: relative; z-index: 1; }
+
+/* ══════════════════════════
+   NAV
+══════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 3rem;
+  background: rgba(10,12,14,0.88);
+  backdrop-filter: blur(18px) saturate(160%);
+  border-bottom: 1px solid var(--bord);
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: .75rem;
+  text-decoration: none;
+}
+
+.logo-emblem {
+  width: 36px; height: 36px;
+  background: var(--or);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-size: 15px; color: var(--noir);
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-family: var(--display);
+  font-size: 1.2rem; letter-spacing: .12em;
+  color: var(--blanc);
+}
+.logo-text span { color: var(--or); }
+
+nav ul { list-style: none; display: flex; gap: .25rem; }
+
+nav a {
+  font-family: var(--mono); font-size: .72rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--gris);
+  text-decoration: none; padding: .45rem .8rem;
+  border-radius: 4px; transition: all .18s;
+}
+nav a:hover { color: var(--or); background: var(--or3); }
+
+.nav-cta {
+  font-family: var(--mono); font-size: .72rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--noir);
+  background: var(--or); border: none; padding: .5rem 1.2rem;
+  border-radius: 4px; cursor: pointer; transition: all .18s;
+  text-decoration: none;
+}
+.nav-cta:hover { background: var(--or2); transform: translateY(-1px); }
+
+/* ══════════════════════════
+   HERO
+══════════════════════════ */
 #accueil {
   min-height: 100vh;
-  background: url("/images/fond.jpg") no-repeat center center;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  position: relative;
+  display: flex; align-items: center;
+  padding: 7rem 3rem 4rem;
+  background:
+    linear-gradient(160deg, rgba(200,146,42,.06) 0%, transparent 50%),
+    var(--noir);
+  position: relative; overflow: hidden;
 }
 
-
-
-  /* GRID OVERLAY */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(124, 135, 231, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(25, 180, 197, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 4rem;
-    background: rgba(5,5,8,0.8);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 1.1rem;
-    color: var(--cyan);
-    letter-spacing: 0.05em;
-    text-decoration: none;
-  }
-
-  .nav-logo span { color: var(--text-muted); }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2.5rem;
-  }
-
-  nav a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-    position: relative;
-  }
-
-  nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px; left: 0;
-    width: 0; height: 1px;
-    background: var(--cyan);
-    transition: width 0.3s;
-  }
-
-  nav a:hover { color: var(--cyan); }
-  nav a:hover::after { width: 100%; }
-
-  /* SECTIONS */
-  section { position: relative; z-index: 1; }
-
-  /* HERO */
-  #accueil {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 0 4rem;
-    overflow: hidden;
-  }
-
-  .hero-content { max-width: 800px; }
-
-  .hero-tag {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--cyan);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-
-  .hero-tag::before {
-    content: '';
-    display: inline-block;
-    width: 40px; height: 1px;
-    background: var(--cyan);
-  }
-
-  h1 {
-    font-family: var(--display);
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 800;
-    line-height: 1.0;
-    margin-bottom: 0.3rem;
-    letter-spacing: -0.02em;
-  }
-
-  .h1-accent {
-    background: linear-gradient(90deg, var(--cyan), var(--violet));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-subtitle {
-    font-family: var(--mono);
-    font-size: 1rem;
-    color: var(--text-muted);
-    margin: 1.5rem 0 2.5rem;
-    line-height: 1.8;
-    max-width: 520px;
-  }
-
-  .hero-subtitle em {
-    color: var(--cyan);
-    font-style: normal;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.9rem 2rem;
-    background: var(--cyan);
-    color: #000;
-    text-decoration: none;
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s;
-    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-  }
-
-  .btn-primary:hover {
-    background: #fff;
-    transform: translateY(-2px);
-  }
-
-  .btn-outline {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.9rem 2rem;
-    background: transparent;
-    color: var(--cyan);
-    text-decoration: none;
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: 1px solid var(--border-bright);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .btn-outline:hover {
-    background: rgba(0,229,255,0.1);
-    border-color: var(--cyan);
-  }
-
-  /* HERO DECORATION */
-  .hero-orb {
-    position: absolute;
-    right: -5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(155,93,229,0.2) 0%, rgba(0,229,255,0.08) 50%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-orb::after {
-    content: '';
-    position: absolute;
-    inset: 60px;
-    border-radius: 50%;
-    border: 1px solid rgba(0,229,255,0.2);
-    animation: pulse 4s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.05); opacity: 0.5; }
-  }
-
-  .hero-code-block {
-    position: absolute;
-    right: 5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    line-height: 2;
-    color: var(--text-muted);
-    width: 340px;
-  }
-
-  .code-comment { color: #444466; }
-  .code-key { color: var(--violet); }
-  .code-val { color: var(--cyan); }
-  .code-str { color: #ffd700; }
-  .code-fn { color: var(--pink); }
-
-  /* SECTION HEADER */
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 4rem;
-  }
-
-  .section-tag {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--cyan);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    background: rgba(0,229,255,0.08);
-    border: 1px solid var(--border);
-    padding: 0.3rem 0.8rem;
-  }
-
-  .section-title {
-    font-family: var(--display);
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-  }
-
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--border-bright), transparent);
-  }
-
-  /* À PROPOS */
-  #a-propos {
-    padding: 10rem 4rem 8rem; /* ↑ augmente l’espace en haut */
-
-    background: var(--bg2);
-    
-  }
-  .white-space {
-  height: 120px;
-  background: #ffffff;
+/* Grille déco fond */
+#accueil::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(200,146,42,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,146,42,.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
 }
 
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
+.hero-inner {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 420px; gap: 4rem; align-items: center;
+  max-width: 1140px; margin: 0 auto; width: 100%;
+}
 
-  .about-text p {
-    color: var(--text-muted);
-    font-size: 1.05rem;
-    line-height: 1.9;
-    margin-bottom: 1.5rem;
-  }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: var(--mono); font-size: .7rem; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--or);
+  background: var(--or3); border: 1px solid var(--bord);
+  padding: .35rem .9rem; border-radius: 999px; margin-bottom: 1.6rem;
+}
 
-  .about-text p strong {
-    color: var(--text);
-  }
+.hero-badge-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--or);
+  animation: pulse 2s ease-in-out infinite;
+}
 
-  .about-text p em {
-    color: var(--cyan);
-    font-style: normal;
-  }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
 
-  .skills-title {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--cyan);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
+.hero-h1 {
+  font-family: var(--display);
+  font-size: clamp(4rem, 9vw, 8rem);
+  line-height: .95; letter-spacing: .02em;
+  color: var(--blanc); margin-bottom: 1rem;
+}
 
-  .skill-item {
-    margin-bottom: 1.2rem;
-  }
+.hero-h1 .accent { color: var(--or); display: block; }
 
-  .skill-label {
-    display: flex;
-    justify-content: space-between;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-bottom: 0.5rem;
-  }
+.hero-sub {
+  font-size: 1rem; color: var(--gris);
+  line-height: 1.75; max-width: 460px; margin-bottom: 2.5rem;
+}
+.hero-sub strong { color: var(--blanc); font-weight: 500; }
 
-  .skill-label span:last-child { color: var(--cyan); }
+.hero-actions { display: flex; gap: .8rem; flex-wrap: wrap; }
 
-  .skill-bar {
-    height: 2px;
-    background: var(--surface2);
-    position: relative;
-    overflow: hidden;
-  }
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: .85rem 1.8rem; font-family: var(--body); font-size: .88rem;
+  font-weight: 700; color: var(--noir); background: var(--or);
+  border: none; border-radius: 5px; cursor: pointer;
+  text-decoration: none; transition: all .2s;
+  box-shadow: 0 4px 20px rgba(200,146,42,.35);
+}
+.btn-gold:hover { background: var(--or2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,146,42,.45); }
 
-  .skill-fill {
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    background: linear-gradient(90deg, var(--cyan), var(--violet));
-    transition: width 1s cubic-bezier(0.4,0,0.2,1);
-  }
+.btn-wire {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: .85rem 1.8rem; font-family: var(--body); font-size: .88rem;
+  font-weight: 500; color: var(--or);
+  background: transparent; border: 1.5px solid var(--bord2);
+  border-radius: 5px; cursor: pointer; text-decoration: none; transition: all .2s;
+}
+.btn-wire:hover { background: var(--or3); border-color: var(--or); }
 
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-    margin-top: 3rem;
-  }
+/* Carte hero droite */
+.hero-card {
+  background: var(--noir3); border: 1px solid var(--bord);
+  border-radius: 12px; overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,.5);
+}
 
-  .stat-box {
-    background: var(--bg2);
-    padding: 1.5rem;
-    text-align: center;
-  }
+.hc-img {
+  width: 100%; height: 220px; object-fit: cover;
+  background: var(--acier);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem;
+}
 
-  .stat-num {
-    font-family: var(--mono);
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--cyan);
-    display: block;
-  }
+.hc-img-placeholder {
+  width: 100%; height: 220px;
+  background: linear-gradient(135deg, var(--acier), var(--acier2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem;
+}
 
-  .stat-label {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-top: 0.3rem;
-    display: block;
-  }
+.hc-body { padding: 1.5rem; }
 
-  /* PROJETS */
+.hc-label {
+  font-family: var(--mono); font-size: .62rem; color: var(--or);
+  letter-spacing: .15em; text-transform: uppercase; margin-bottom: .6rem;
+}
+
+.hc-title { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+.hc-desc { font-size: .82rem; color: var(--gris); line-height: 1.6; margin-bottom: 1rem; }
+
+.hc-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--bord); }
+.hc-stat { background: var(--noir2); padding: .9rem .5rem; text-align: center; }
+.hc-stat-n { font-family: var(--display); font-size: 1.6rem; color: var(--or); display: block; }
+.hc-stat-l { font-family: var(--mono); font-size: .58rem; color: var(--gris); letter-spacing: .1em; text-transform: uppercase; }
+
+/* ══════════════════════════
+   BANDEROLE CHIFFRES
+══════════════════════════ */
+.chiffres-band {
+  background: var(--or);
+  padding: 1.8rem 3rem;
+  display: flex; justify-content: center; align-items: center;
+  gap: 4rem; flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+
+.chiffre-item { text-align: center; }
+.chiffre-n {
+  font-family: var(--display); font-size: 2.5rem;
+  color: var(--noir); line-height: 1;
+}
+.chiffre-l {
+  font-family: var(--mono); font-size: .65rem; letter-spacing: .12em;
+  text-transform: uppercase; color: rgba(10,12,14,.6);
+  margin-top: .2rem;
+}
+
+/* ══════════════════════════
+   SECTION HEADER
+══════════════════════════ */
+.sec-header {
+  display: flex; align-items: center; gap: 1.25rem; margin-bottom: 3.5rem;
+}
+
+.sec-num {
+  font-family: var(--mono); font-size: .65rem; color: var(--or);
+  letter-spacing: .2em; text-transform: uppercase;
+  background: var(--or3); border: 1px solid var(--bord);
+  padding: .28rem .75rem; border-radius: 4px; flex-shrink: 0;
+}
+
+.sec-title {
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  letter-spacing: .04em; color: var(--blanc);
+}
+
+.sec-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, var(--bord2), transparent);
+}
+
+/* ══════════════════════════
+   À PROPOS
+══════════════════════════ */
+#a-propos {
+  padding: 7rem 3rem;
+  background: var(--noir2);
+}
+
+.about-wrap { max-width: 1140px; margin: 0 auto; }
+
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+}
+
+.about-text p {
+  font-size: .96rem; color: var(--gris); line-height: 1.85;
+  margin-bottom: 1.25rem;
+}
+.about-text p strong { color: var(--blanc); font-weight: 600; }
+.about-text p em { color: var(--or); font-style: normal; }
+
+.skill-wrap { }
+
+.skill-head {
+  font-family: var(--mono); font-size: .65rem; color: var(--or);
+  letter-spacing: .2em; text-transform: uppercase; margin-bottom: 1.5rem;
+}
+
+.skill-item { margin-bottom: 1.1rem; }
+
+.skill-row {
+  display: flex; justify-content: space-between;
+  font-family: var(--mono); font-size: .72rem; color: var(--gris);
+  margin-bottom: .4rem;
+}
+.skill-row span:last-child { color: var(--or); }
+
+.skill-track {
+  height: 3px; background: var(--acier); border-radius: 999px;
+  position: relative; overflow: hidden;
+}
+
+.skill-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: linear-gradient(90deg, var(--or), var(--or2));
+  border-radius: 999px;
+  transition: width 1.2s cubic-bezier(.4,0,.2,1);
+}
+
+/* ══════════════════════════
+   SERVICES
+══════════════════════════ */
+#services {
+  padding: 7rem 3rem;
+  background: var(--noir);
+}
+
+.services-wrap { max-width: 1140px; margin: 0 auto; }
+
+.services-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem;
+}
+
+.srv-card {
+  background: var(--noir3); border: 1px solid var(--bord);
+  border-radius: 10px; padding: 2rem;
+  transition: all .25s; position: relative; overflow: hidden;
+}
+
+.srv-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--or), var(--or2));
+  transform: scaleX(0); transform-origin: left; transition: transform .4s;
+}
+
+.srv-card:hover { border-color: var(--bord2); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(200,146,42,.1); }
+.srv-card:hover::before { transform: scaleX(1); }
+
+.srv-ico {
+  width: 52px; height: 52px; border-radius: 10px;
+  background: var(--or3); border: 1px solid var(--bord);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; margin-bottom: 1.25rem;
+}
+
+.srv-name {
+  font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem;
+  color: var(--blanc);
+}
+
+.srv-desc {
+  font-size: .84rem; color: var(--gris); line-height: 1.68; margin-bottom: 1.25rem;
+}
+
+.srv-features { list-style: none; }
+.srv-features li {
+  font-size: .8rem; color: var(--gris); padding: .28rem 0;
+  border-bottom: 1px solid rgba(200,146,42,.08);
+  display: flex; align-items: center; gap: .5rem;
+}
+.srv-features li:last-child { border: none; }
+.srv-features li::before { content: '✓'; color: var(--or); font-size: .7rem; flex-shrink: 0; }
+
+/* ══════════════════════════
+   PROJETS
+══════════════════════════ */
 #projets {
-  width: 100%;
-  padding: 8rem 0; /* enlève les côtés */
-  margin: 0;
+  padding: 7rem 3rem;
+  background: var(--noir2);
 }
 
-  .projects-grid {
-  width: 100%;
-  padding: 0 4rem; /* garde un peu d’air sur les côtés */
+.projets-wrap { max-width: 1140px; margin: 0 auto; }
+
+.projets-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-   padding: 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
 }
 
-  .project-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 0;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-  }
+/* Featured prend 2 colonnes */
+.proj-card {
+  background: var(--noir3); border: 1px solid var(--bord);
+  border-radius: 10px; overflow: hidden;
+  transition: all .25s; cursor: pointer;
+}
 
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--cyan), var(--violet));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s;
-  }
+.proj-card.featured { grid-column: span 2; }
 
-  .project-card:hover {
-    border-color: var(--border-bright);
-    transform: translateY(-4px);
-    background: var(--surface2);
-  }
+.proj-card:hover { border-color: var(--bord2); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,.4); }
 
-  .project-card:hover::before { transform: scaleX(1); }
+.proj-img {
+  width: 100%; height: 200px; object-fit: cover;
+  background: linear-gradient(135deg, var(--acier), var(--acier2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem; color: var(--or); flex-shrink: 0;
+}
 
-  .project-num {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    letter-spacing: 0.2em;
-    margin-bottom: 1.2rem;
-  }
+.proj-card.featured .proj-img { height: 260px; }
 
-  .project-title {
-    font-family: var(--display);
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 0.8rem;
-    color: var(--text);
-  }
+.proj-body { padding: 1.25rem 1.5rem 1.5rem; }
 
-  .project-desc {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
+.proj-meta {
+  display: flex; align-items: center; gap: .6rem; margin-bottom: .6rem;
+}
 
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
+.proj-num {
+  font-family: var(--mono); font-size: .6rem; color: var(--gris);
+  letter-spacing: .2em;
+}
 
-  .tag {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--cyan);
-    background: rgba(0,229,255,0.08);
-    border: 1px solid rgba(0,229,255,0.2);
-    padding: 0.25rem 0.6rem;
-    letter-spacing: 0.1em;
-  }
+.proj-badge {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .1em;
+  color: var(--noir); background: var(--or); padding: .15rem .55rem;
+  border-radius: 999px; text-transform: uppercase;
+}
 
-  .project-link {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: color 0.2s;
-  }
+.proj-title {
+  font-size: .96rem; font-weight: 700; color: var(--blanc); margin-bottom: .4rem;
+}
 
-  .project-link:hover { color: var(--cyan); }
+.proj-desc { font-size: .8rem; color: var(--gris); line-height: 1.6; margin-bottom: .9rem; }
 
-  .project-link span {
-    display: inline-block;
-    transition: transform 0.2s;
-  }
+.proj-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+.proj-tag {
+  font-family: var(--mono); font-size: .6rem; color: var(--or);
+  background: var(--or3); border: 1px solid var(--bord);
+  padding: .18rem .55rem; border-radius: 999px; letter-spacing: .06em;
+}
 
-  .project-link:hover span { transform: translateX(4px); }
+/* ══════════════════════════
+   CONTACT
+══════════════════════════ */
+#contact {
+  padding: 7rem 3rem;
+  background: var(--noir);
+}
 
-  .project-card.featured {
-    
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-  }
+.contact-wrap { max-width: 1140px; margin: 0 auto; }
 
-  .featured-badge {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--violet);
-    background: rgba(155,93,229,0.1);
-    border: 1px solid rgba(155,93,229,0.3);
-    padding: 0.25rem 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    display: inline-block;
-    margin-bottom: 1rem;
-  }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+}
 
-  .featured-mockup {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 1.5rem;
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    line-height: 1.8;
-  }
+.ci-h {
+  font-family: var(--display); font-size: clamp(2rem,4vw,3.2rem);
+  letter-spacing: .04em; line-height: 1.1; margin-bottom: 1rem;
+}
+.ci-h span { color: var(--or); }
 
-  .mockup-bar {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 1.2rem;
-  }
+.ci-p { font-size: .9rem; color: var(--gris); line-height: 1.75; margin-bottom: 2rem; }
 
-  .dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-  }
-  .dot-red { background: var(--pink); }
-  .dot-yellow { background: #ffd700; }
-  .dot-green { background: #00e676; }
+.ci-links { display: flex; flex-direction: column; gap: .5rem; }
 
-  /* CONTACT */
-  #contact {
-    padding: 8rem 4rem;
-    background: var(--bg2);
-  }
+.ci-link {
+  display: flex; align-items: center; gap: 1rem;
+  padding: .85rem 1rem;
+  font-size: .84rem; color: var(--gris);
+  text-decoration: none;
+  border: 1px solid transparent; border-radius: 8px;
+  transition: all .18s;
+}
 
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
+.ci-link:hover { color: var(--or); border-color: var(--bord); background: var(--or3); }
 
-  .contact-info h3 {
-    font-family: var(--display);
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
+.ci-ico {
+  width: 36px; height: 36px;
+  background: var(--noir3); border: 1px solid var(--bord);
+  border-radius: 8px; display: flex; align-items: center;
+  justify-content: center; font-size: .9rem; flex-shrink: 0;
+  color: var(--or);
+}
 
-  .contact-info h3 span { color: var(--cyan); }
+/* Formulaire */
+.contact-form { display: flex; flex-direction: column; gap: .9rem; }
 
-  .contact-info p {
-    color: var(--text-muted);
-    line-height: 1.8;
-    margin-bottom: 2rem;
-    font-size: 0.95rem;
-  }
+.fg { display: flex; flex-direction: column; gap: .38rem; }
+.fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
 
-  .contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
+.fl {
+  font-family: var(--mono); font-size: .62rem; color: var(--gris);
+  letter-spacing: .12em; text-transform: uppercase;
+}
 
-  .contact-link-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.2s;
-    padding: 0.8rem 1rem;
-    border: 1px solid transparent;
-  }
+.fi, .fta {
+  background: var(--noir3); border: 1.5px solid var(--bord);
+  color: var(--blanc); font-family: var(--body); font-size: .88rem;
+  padding: .75rem 1rem; border-radius: 7px; outline: none;
+  transition: border-color .18s; width: 100%;
+}
+.fi:focus, .fta:focus { border-color: var(--or); background: var(--noir2); }
+.fi::placeholder, .fta::placeholder { color: var(--gris2); }
+.fta { min-height: 120px; resize: vertical; }
 
-  .contact-link-item:hover {
-    color: var(--cyan);
-    border-color: var(--border);
-    background: rgba(0,229,255,0.04);
-  }
+.form-success {
+  display: none; font-family: var(--mono); font-size: .78rem;
+  color: #3ddc84; padding: .75rem 1rem;
+  background: rgba(61,220,132,.08); border: 1px solid rgba(61,220,132,.25);
+  border-radius: 7px;
+}
 
-  .contact-link-icon {
-    width: 32px;
-    height: 32px;
-    background: var(--surface);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-    border: 1px solid var(--border);
-    color: var(--cyan);
-  }
+/* ══════════════════════════
+   FOOTER
+══════════════════════════ */
+footer {
+  background: var(--noir2); border-top: 1px solid var(--bord);
+  padding: 2rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+  position: relative; z-index: 1;
+}
 
-  /* FORM */
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+.footer-left {
+  display: flex; align-items: center; gap: .75rem;
+}
 
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+.footer-copy {
+  font-family: var(--mono); font-size: .66rem; color: var(--gris2);
+}
+.footer-copy span { color: var(--or); }
 
-  .form-label {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
+.footer-up {
+  font-family: var(--mono); font-size: .66rem; color: var(--gris2);
+  text-decoration: none; transition: color .18s;
+}
+.footer-up:hover { color: var(--or); }
 
-  .form-input, .form-textarea {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    padding: 0.9rem 1rem;
-    outline: none;
-    transition: border-color 0.2s;
-    width: 100%;
-    resize: vertical;
-  }
+/* ══════════════════════════
+   ANIMATIONS SCROLL
+══════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
-  .form-input:focus, .form-textarea:focus {
-    border-color: var(--cyan);
-  }
+.hero-badge, .hero-h1, .hero-sub, .hero-actions {
+  animation: fadeUp .7s cubic-bezier(.4,0,.2,1) both;
+}
+.hero-badge  { animation-delay: .08s; }
+.hero-h1     { animation-delay: .2s; }
+.hero-sub    { animation-delay: .34s; }
+.hero-actions{ animation-delay: .48s; }
+.hero-card   { animation: fadeUp .7s cubic-bezier(.4,0,.2,1) .3s both; }
 
-  .form-input::placeholder, .form-textarea::placeholder {
-    color: var(--text-muted);
-    opacity: 0.5;
-  }
-
-  .form-textarea { min-height: 120px; }
-
-  /* FOOTER */
-  footer {
-    padding: 2rem 4rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  .footer-copy {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--text-muted);
-  }
-
-  .footer-copy span { color: var(--cyan); }
-
-  .footer-back {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-back:hover { color: var(--cyan); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-content > * {
-    animation: fadeUp 0.8s cubic-bezier(0.4,0,0.2,1) both;
-  }
-  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
-  .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
-  .hero-content > *:nth-child(3) { animation-delay: 0.4s; }
-  .hero-content > *:nth-child(4) { animation-delay: 0.55s; }
-
-  /* SCANLINE ANIMATION ON CODE BLOCK */
-  .hero-code-block::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 40px;
-    background: linear-gradient(180deg, transparent, rgba(0,229,255,0.05), transparent);
-    animation: scan 3s linear infinite;
-  }
-
-  @keyframes scan {
-    from { transform: translateY(-40px); }
-    to { transform: translateY(100%); }
-  }
-
-  @media (max-width: 900px) {
-    nav { padding: 1rem 2rem; }
-    nav ul { gap: 1.5rem; }
-    #accueil, #a-propos, #projets, #contact { padding: 6rem 2rem; }
-    .hero-code-block { display: none; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .project-card.featured { grid-column: unset; grid-template-columns: 1fr; }
-    .stats-grid { grid-template-columns: repeat(3, 1fr); }
-    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 1rem; text-align: center; }
-  }
+/* ══════════════════════════
+   RESPONSIVE
+══════════════════════════ */
+@media (max-width: 960px) {
+  nav { padding: 1rem 1.5rem; }
+  nav ul { display: none; }
+  #accueil, #a-propos, #services, #projets, #contact { padding: 6rem 1.5rem; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-card { display: none; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .projets-grid { grid-template-columns: 1fr; }
+  .proj-card.featured { grid-column: span 1; }
+  .chiffres-band { gap: 2rem; padding: 1.5rem; }
+  footer { flex-direction: column; gap: .75rem; text-align: center; }
+  .fg-row { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
-   
+
+<!-- ══ NAV ══ -->
 <nav>
-  <a href="#accueil" class="nav-logo">Baron<span>_</span>Services</a>
+  <a href="#accueil" class="nav-logo">
+    <div class="logo-emblem">B</div>
+    <span class="logo-text">Baron<span>Services</span></span>
+  </a>
   <ul>
     <li><a href="#accueil">Accueil</a></li>
     <li><a href="#a-propos">À propos</a></li>
+    <li><a href="#services">Services</a></li>
     <li><a href="#projets">Projets</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <a href="#contact" class="nav-cta">Demander un devis</a>
 </nav>
 
-<!-- HERO -->
+<!-- ══ HERO ══ -->
 <section id="accueil">
-  <div class="hero-content">
-    <div class="hero-tag">Echanteur &amp; Fondateur</div>
-    <h1>Construire<br>la <span class="h1-accent">maison</span><br>de demain.</h1>
-    <p class="hero-subtitle">
-      Bienvenue chez <em>BaronServices</em> — où chaque service est fait avec attention.
-      Je transforme vos maisons en lieux  surs <em>précis, performants</em> et mémorables.
-    </p>
-    <div class="hero-cta">
-      <a href="#projets" class="btn-primary">Voir mes projets →</a>
-      <a href="#contact" class="btn-outline">Me contacter</a>
-    </div>
-  </div>
-
-  
-
-</section>
-<div class="white-space"></div>
-<!-- À PROPOS -->
-<section id="a-propos">
-  <div class="section-header">
-    <div class="section-tag">01</div>
-    <h2 class="section-title">À propos</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="about-grid">
-    <div class="about-text">
-     <p>
-  Je suis <strong>étancheur</strong> et fondateur de <em>BaronServices</em>,
-  un espace où je mets en valeur la précision, la rigueur et le travail bien fait.
-</p>
-
-<p>
-  Mon métier consiste à assurer l’étanchéité des toitures et des structures,
-  afin de protéger les bâtiments contre l’eau et les intempéries, avec des solutions durables et efficaces.
-</p>
-
-<p>
-  À BaronServices, j’apporte la même exigence : construire des projets solides, fiables et pensés pour durer,
-  que ce soit dans le bâtiment ou dans le digital.
-</p>
-
-      <div class="stats-grid">
-        <div class="stat-box">
-          <span class="stat-num">10+</span>
-          <span class="stat-label">Projets</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-num">100%</span>
-          <span class="stat-label">Passion</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-num">∞</span>
-          <span class="stat-label">Créativité</span>
-        </div>
-      </div>
-    </div>
-
+  <div class="hero-inner">
     <div>
-      <div class="skills-title"> technique</div>
-
-      <div class="skill-item">
-        <div class="skill-label"><span>Accessibilite</span><span>95%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width: 95%"></div></div>
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Étancheur professionnel · Kongoussi, BF
       </div>
-      <div class="skill-item">
-        <div class="skill-label"><span>Efficacite</span><span>92%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width: 92%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-label"><span>Creativite</span><span>88%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width: 88%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-label"><span>Responsabilite</span><span>96%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width: 96%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-label"><span>Performance </span><span>85%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-label"><span> Design</span><span>80%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
+      <h1 class="hero-h1">
+        Protéger
+        <span class="accent">chaque<br>structure.</span>
+      </h1>
+      <p class="hero-sub">
+        <strong>Baron Services</strong> — spécialiste de l'étanchéité à Kongoussi.
+        Toitures, terrasses, murs : des solutions durables contre l'eau
+        et les infiltrations, réalisées avec précision et sérieux.
+      </p>
+      <div class="hero-actions">
+        <a href="#projets" class="btn-gold">
+          Voir mes réalisations
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="https://wa.me/22605338841?text=Bonjour,%20je%20souhaite%20un%20devis" target="_blank" class="btn-wire">
+          💬 WhatsApp
+        </a>
       </div>
     </div>
-  </div>
-</section>
 
-
-
-
-<!-- PROJETS -->
-<section id="projets">
-  <div class="section-header">
-    <div class="section-tag">02</div>
-    <h2 class="section-title">Projets</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="projects-grid">
-
-    <!-- 1 -->
-    <div class="project-card featured">
-      <div>
-        <div class="featured-badge">★ Chantier phare</div>
-        <div class="project-num">001</div>
-        <h3 class="project-title">Étanchéité toiture complète</h3>
-        
-        <img src="/images/img1.jpg" alt="Toiture étanchéité 1"
-        style="width:100%; margin:1rem 0; border:1px solid var(--border);">
-
-        <p class="project-desc">
-          Réalisation complète d’une étanchéité bitumineuse sur toiture terrasse.
-        </p>
-
-        <div class="project-tags">
-          <span class="tag">Bitume</span>
-          <span class="tag">Toiture</span>
+    <!-- Carte hero -->
+    <div class="hero-card">
+      <div class="hc-img-placeholder">🏗️</div>
+      <div class="hc-body">
+        <div class="hc-label">// Fiche chantier</div>
+        <div class="hc-title">Étanchéité toiture terrasse</div>
+        <div class="hc-desc">Membrane bitumineuse multicouche, primaire d'accrochage, finition gravillonnée.</div>
+        <div class="hc-stats">
+          <div class="hc-stat">
+            <span class="hc-stat-n">10+</span>
+            <span class="hc-stat-l">Projets</span>
+          </div>
+          <div class="hc-stat">
+            <span class="hc-stat-n">100%</span>
+            <span class="hc-stat-l">Garantis</span>
+          </div>
+          <div class="hc-stat">
+            <span class="hc-stat-n">5★</span>
+            <span class="hc-stat-l">Avis clients</span>
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- 2 -->
-    <div class="project-card">
-      <div class="project-num">002</div>
-      <h3 class="project-title">Réparation fuite toiture</h3>
-
-      <img src="/images/img2.jpg" alt="Fuite toiture"
-      style="width:100%; margin:1rem 0; border:1px solid var(--border);">
-
-      <p class="project-desc">
-        Réparation rapide d’infiltration d’eau sur toiture ancienne.
-      </p>
-
-      <div class="project-tags">
-        <span class="tag">Urgence</span>
-        <span class="tag">Réparation</span>
-      </div>
-    </div>
-
-    <!-- 3 -->
-    <div class="project-card">
-      <div class="project-num">003</div>
-      <h3 class="project-title">Étanchéité terrasse maison</h3>
-
-      <img src="/images/img3.jpg" alt="Terrasse"
-      style="width:100%; margin:1rem 0; border:1px solid var(--border);">
-
-      <p class="project-desc">
-        Protection complète d’une terrasse contre l’eau et les fissures.
-      </p>
-
-      <div class="project-tags">
-        <span class="tag">Terrasse</span>
-        <span class="tag">Protection</span>
-      </div>
-    </div>
-
-    <!-- 4 -->
-    <div class="project-card">
-      <div class="project-num">004</div>
-      <h3 class="project-title">Toiture bâtiment industriel</h3>
-
-      <img src="/images/img4.jpg" alt="Bâtiment industriel"
-      style="width:100%; margin:1rem 0; border:1px solid var(--border);">
-
-      <p class="project-desc">
-        Étanchéité renforcée pour grand bâtiment industriel.
-      </p>
-
-      <div class="project-tags">
-        <span class="tag">Industriel</span>
-        <span class="tag">Grande surface</span>
-      </div>
-    </div>
-
-    <!-- 5 -->
-    <div class="project-card">
-      <div class="project-num">005</div>
-      <h3 class="project-title">Traitement humidité mur</h3>
-
-      <img src="/images/img5.jpg" alt="Mur humidité"
-      style="width:100%; margin:1rem 0; border:1px solid var(--border);">
-
-      <p class="project-desc">
-        Traitement contre l’humidité et protection des murs extérieurs.
-      </p>
-
-      <div class="project-tags">
-        <span class="tag">Humidité</span>
-        <span class="tag">Protection mur</span>
-      </div>
-    </div>
-
   </div>
-
 </section>
 
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-header">
-    <div class="section-tag">03</div>
-    <h2 class="section-title">Contact</h2>
-    <div class="section-line"></div>
+<!-- ══ CHIFFRES ══ -->
+<div class="chiffres-band">
+  <div class="chiffre-item">
+    <div class="chiffre-n">10+</div>
+    <div class="chiffre-l">Chantiers réalisés</div>
   </div>
-
-  <div class="contact-grid">
-    <div class="contact-info">
-      <h3>Travaillons<br>ensemble <span>_</span></h3>
-      <p>
-        
-        Je serais ravie d'en discuter et de voir comment BaronServices  peut vous accompagner.
-      </p>
-
-      <a href="mailto:honore@gmail.com" class="contact-link-item">
-    <div class="contact-link-icon">@</div>
-    honore@gmail.com
-  </a>
-
-  <a class="contact-link-item whatsapp"
-     href="https://wa.me/22605338841?text=Bonjour%20je%20viens%20de%20votre%20portfolio%20et%20je%20souhaite%20vous%20contacter"
-     target="_blank">
-    <div class="contact-link-icon">💬</div>
-    WhatsApp
-  </a>
-
-  <div class="contact-link-item">
-    <div class="contact-link-icon">📍</div>
-    Kongoussi, Burkina Faso
+  <div class="chiffre-item">
+    <div class="chiffre-n">100%</div>
+    <div class="chiffre-l">Clients satisfaits</div>
   </div>
+  <div class="chiffre-item">
+    <div class="chiffre-n">5 ans</div>
+    <div class="chiffre-l">D'expérience</div>
+  </div>
+  <div class="chiffre-item">
+    <div class="chiffre-n">24h</div>
+    <div class="chiffre-l">Réponse devis</div>
+  </div>
+</div>
+
+<!-- ══ À PROPOS ══ -->
+<section id="a-propos">
+  <div class="about-wrap">
+    <div class="sec-header">
+      <div class="sec-num">01</div>
+      <h2 class="sec-title">À propos</h2>
+      <div class="sec-line"></div>
     </div>
-    <div class="footer-copy">
-    © 2025 <span>Nexora Core</span> — Tous droits réservés
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Je suis <strong>Honoré</strong>, étancheur professionnel et fondateur de
+          <em>Baron Services</em>, basé à Kongoussi au Burkina Faso.
+          Ma passion : protéger durablement les bâtiments contre les infiltrations d'eau.
+        </p>
+        <p>
+          Mon métier exige <strong>rigueur, précision et maîtrise des matériaux</strong>.
+          Qu'il s'agisse d'une toiture terrasse, d'une façade humide ou d'un mur
+          en contact avec le sol, j'apporte des solutions adaptées, solides et garanties.
+        </p>
+        <p>
+          Chez <em>Baron Services</em>, chaque chantier est traité avec le même
+          niveau d'exigence, de la première inspection jusqu'à la livraison finale.
+          Votre tranquillité d'esprit est ma priorité.
+        </p>
+      </div>
+
+      <div class="skill-wrap">
+        <div class="skill-head">// Compétences</div>
+
+        <div class="skill-item">
+          <div class="skill-row"><span>Étanchéité bitumineuse</span><span>96%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:96%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span>Réparation fuite & urgence</span><span>94%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:94%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span>Traitement humidité mur</span><span>90%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span>Étanchéité terrasse</span><span>92%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:92%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span>Grands bâtiments industriels</span><span>85%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span>Gestion & suivi de chantier</span><span>88%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:88%"></div></div>
+        </div>
+      </div>
+    </div>
   </div>
-  <a href="#accueil" class="footer-back">↑ Haut de page</a>
+</section>
 
- 
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="services-wrap">
+    <div class="sec-header">
+      <div class="sec-num">02</div>
+      <h2 class="sec-title">Services</h2>
+      <div class="sec-line"></div>
+    </div>
 
-    
+    <div class="services-grid">
 
+      <div class="srv-card">
+        <div class="srv-ico">🏠</div>
+        <div class="srv-name">Étanchéité toiture</div>
+        <p class="srv-desc">Pose de membrane bitumineuse ou résine sur toiture terrasse, inclinée ou complexe.</p>
+        <ul class="srv-features">
+          <li>Inspection et diagnostic gratuit</li>
+          <li>Membrane bicouche ou monocouche</li>
+          <li>Primaire d'accrochage inclus</li>
+          <li>Finition gravillonnée ou aluminium</li>
+          <li>Garantie décennale</li>
+        </ul>
+      </div>
 
+      <div class="srv-card">
+        <div class="srv-ico">🔧</div>
+        <div class="srv-name">Réparation & urgence</div>
+        <p class="srv-desc">Intervention rapide sur fuite, cloquage ou décollement de membrane existante.</p>
+        <ul class="srv-features">
+          <li>Intervention sous 24 à 48h</li>
+          <li>Diagnostic sur place</li>
+          <li>Réparation ponctuelle ou totale</li>
+          <li>Traitement des points singuliers</li>
+          <li>Rapport d'intervention écrit</li>
+        </ul>
+      </div>
 
+      <div class="srv-card">
+        <div class="srv-ico">🏗️</div>
+        <div class="srv-name">Bâtiments industriels</div>
+        <p class="srv-desc">Étanchéité sur grandes surfaces pour entrepôts, usines et bâtiments commerciaux.</p>
+        <ul class="srv-features">
+          <li>Étude de surface préalable</li>
+          <li>Équipe renforcée disponible</li>
+          <li>Matériaux haute résistance</li>
+          <li>Respect des normes en vigueur</li>
+          <li>Suivi de chantier régulier</li>
+        </ul>
+      </div>
+
+      <div class="srv-card">
+        <div class="srv-ico">🌧️</div>
+        <div class="srv-name">Terrasse & balcon</div>
+        <p class="srv-desc">Protection complète des terrasses et balcons contre l'eau, le gel et les fissurations.</p>
+        <ul class="srv-features">
+          <li>Étanchéité sous carrelage</li>
+          <li>Résine ou membrane liquide</li>
+          <li>Traitement des joints et fissures</li>
+          <li>Protection anti-fissure</li>
+        </ul>
+      </div>
+
+      <div class="srv-card">
+        <div class="srv-ico">🧱</div>
+        <div class="srv-name">Traitement humidité</div>
+        <p class="srv-desc">Assainissement des murs humides, soubassements et caves contre les remontées capillaires.</p>
+        <ul class="srv-features">
+          <li>Diagnostic humidimétrique</li>
+          <li>Injection de résine hydrophobe</li>
+          <li>Enduit d'assainissement</li>
+          <li>Traitement façade extérieure</li>
+        </ul>
+      </div>
+
+      <div class="srv-card">
+        <div class="srv-ico">📋</div>
+        <div class="srv-name">Conseil & Devis</div>
+        <p class="srv-desc">Accompagnement personnalisé, étude de votre projet et devis détaillé gratuit sous 24h.</p>
+        <ul class="srv-features">
+          <li>Visite et diagnostic gratuit</li>
+          <li>Devis détaillé et transparent</li>
+          <li>Conseil sur les matériaux</li>
+          <li>Suivi post-chantier</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROJETS ══ -->
+<section id="projets">
+  <div class="projets-wrap">
+    <div class="sec-header">
+      <div class="sec-num">03</div>
+      <h2 class="sec-title">Réalisations</h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="projets-grid">
+
+      <!-- Featured -->
+      <div class="proj-card featured">
+        <div class="proj-img" style="background:linear-gradient(135deg,#1a2510,#2a3a18);font-size:4rem;">🏚️</div>
+        <div class="proj-body">
+          <div class="proj-meta">
+            <span class="proj-num">001</span>
+            <span class="proj-badge">★ Chantier phare</span>
+          </div>
+          <div class="proj-title">Étanchéité toiture terrasse — Villa résidentielle</div>
+          <p class="proj-desc">Réalisation complète d'une étanchéité bitumineuse sur toiture terrasse de 180 m². Pose de primaire d'accrochage, membrane bicouche soudée au chalumeau, finition gravillonnée. Durée : 5 jours.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Bitume</span>
+            <span class="proj-tag">Toiture terrasse</span>
+            <span class="proj-tag">180 m²</span>
+            <span class="proj-tag">Résidentiel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="proj-card">
+        <div class="proj-img" style="background:linear-gradient(135deg,#1a1510,#2a2018);">🔧</div>
+        <div class="proj-body">
+          <div class="proj-meta"><span class="proj-num">002</span></div>
+          <div class="proj-title">Réparation fuite urgente</div>
+          <p class="proj-desc">Intervention d'urgence sur infiltration active. Diagnostic, traitement des points singuliers et reprise partielle de membrane.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Urgence</span>
+            <span class="proj-tag">Réparation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="proj-card">
+        <div class="proj-img" style="background:linear-gradient(135deg,#101a20,#182028);">🌧️</div>
+        <div class="proj-body">
+          <div class="proj-meta"><span class="proj-num">003</span></div>
+          <div class="proj-title">Terrasse maison familiale</div>
+          <p class="proj-desc">Protection complète d'une terrasse de 60 m² contre l'eau, fissures et UV. Pose résine + membrane sous carrelage.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Terrasse</span>
+            <span class="proj-tag">60 m²</span>
+            <span class="proj-tag">Résine</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="proj-card">
+        <div class="proj-img" style="background:linear-gradient(135deg,#151010,#222018);">🏗️</div>
+        <div class="proj-body">
+          <div class="proj-meta"><span class="proj-num">004</span></div>
+          <div class="proj-title">Bâtiment industriel — Grande surface</div>
+          <p class="proj-desc">Étanchéité renforcée sur 450 m² pour entrepôt de stockage. Matériaux haute résistance, délai tenu.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Industriel</span>
+            <span class="proj-tag">450 m²</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="proj-card">
+        <div class="proj-img" style="background:linear-gradient(135deg,#101518,#181a20);">🧱</div>
+        <div class="proj-body">
+          <div class="proj-meta"><span class="proj-num">005</span></div>
+          <div class="proj-title">Traitement humidité murs</div>
+          <p class="proj-desc">Assainissement de murs humides en soubassement. Injection de résine hydrophobe + enduit d'assainissement.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Humidité</span>
+            <span class="proj-tag">Murs</span>
+            <span class="proj-tag">Injection</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="sec-header">
+      <div class="sec-num">04</div>
+      <h2 class="sec-title">Contact</h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <h3 class="ci-h">Parlons de<br>votre projet <span>_</span></h3>
+        <p class="ci-p">Un problème d'infiltration ? Une toiture à protéger ? Contactez-moi pour un diagnostic gratuit et un devis sous 24h. Intervention sur Kongoussi et environs.</p>
+
+        <div class="ci-links">
+          <a href="https://wa.me/22605338841?text=Bonjour,%20je%20souhaite%20un%20devis" target="_blank" class="ci-link">
+            <div class="ci-ico">💬</div>
+            WhatsApp : +226 05 33 88 41
+          </a>
+          <a href="mailto:honore@gmail.com" class="ci-link">
+            <div class="ci-ico">@</div>
+            honore@gmail.com
+          </a>
+          <div class="ci-link">
+            <div class="ci-ico">📍</div>
+            Kongoussi, Burkina Faso
+          </div>
+          <div class="ci-link">
+            <div class="ci-ico">⏰</div>
+            Lun–Sam · 07h00 – 18h00
+          </div>
+        </div>
+      </div>
+
+      <form id="contact-form" class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="fg-row">
+          <div class="fg">
+            <label class="fl">Votre nom</label>
+            <input type="text" class="fi" placeholder="Ex: Amadou Traoré" required>
+          </div>
+          <div class="fg">
+            <label class="fl">Téléphone</label>
+            <input type="tel" class="fi" placeholder="+226 XX XX XX XX">
+          </div>
+        </div>
+        <div class="fg">
+          <label class="fl">Email</label>
+          <input type="email" class="fi" placeholder="vous@exemple.com">
+        </div>
+        <div class="fg">
+          <label class="fl">Type de projet</label>
+          <select class="fi">
+            <option value="">Sélectionner...</option>
+            <option>Étanchéité toiture</option>
+            <option>Réparation fuite urgente</option>
+            <option>Terrasse ou balcon</option>
+            <option>Bâtiment industriel</option>
+            <option>Traitement humidité</option>
+            <option>Autre / Renseignement</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label class="fl">Description du problème</label>
+          <textarea class="fta" placeholder="Décrivez votre projet, la surface approximative, la localisation..." required></textarea>
+        </div>
+        <button type="submit" class="btn-gold" style="align-self:flex-start;">
+          Envoyer le message
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <div class="form-success" id="form-success">
+          ✓ Message envoyé ! Je vous réponds sous 24h.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-left">
+    <div class="logo-emblem" style="width:28px;height:28px;font-size:12px;">B</div>
+    <span class="footer-copy">© 2025 <span>Baron Services</span> — Étanchéité & Protection · Kongoussi, BF</span>
+  </div>
+  <a href="#accueil" class="footer-up">↑ Haut de page</a>
+</footer>
 
 <script>
-  function handleSubmit(e) {
-    e.preventDefault();
-    document.getElementById('form-success').style.display = 'block';
-    e.target.reset();
-    setTimeout(() => {
-      document.getElementById('form-success').style.display = 'none';
-    }, 4000);
-  }
+/* ── Formulaire ── */
+function handleSubmit(e) {
+  e.preventDefault();
+  const ok = document.getElementById('form-success');
+  ok.style.display = 'block';
+  e.target.reset();
+  setTimeout(() => { ok.style.display = 'none'; }, 5000);
+}
 
-  // Animate skill bars on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const fills = entry.target.querySelectorAll('.skill-fill');
-        fills.forEach(fill => {
-          const w = fill.style.width;
-          fill.style.width = '0%';
-          setTimeout(() => fill.style.width = w, 100);
-        });
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  const aboutSection = document.querySelector('#a-propos');
-  if (aboutSection) observer.observe(aboutSection);
-
-  // Active nav link
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(sec => {
-      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--cyan)' : '';
+/* ── Skill bars animées au scroll ── */
+new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.querySelectorAll('.skill-fill').forEach(f => {
+      const w = f.style.width; f.style.width = '0';
+      setTimeout(() => { f.style.width = w; }, 150);
     });
   });
+}, { threshold: 0.3 }).observe(document.querySelector('#a-propos'));
+
+/* ── Nav active ── */
+window.addEventListener('scroll', () => {
+  let cur = '';
+  document.querySelectorAll('section[id]').forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  document.querySelectorAll('nav a').forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--or)' : '';
+    a.style.background = a.getAttribute('href') === '#' + cur ? 'var(--or3)' : '';
+  });
+}, { passive: true });
+
+/* ── Fade-in au scroll ── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.srv-card, .proj-card, .chiffre-item').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(18px)';
+  el.style.transition = `opacity .5s ease ${i * 0.07}s, transform .5s ease ${i * 0.07}s`;
+  io.observe(el);
+});
 </script>
 </body>
 </html>
